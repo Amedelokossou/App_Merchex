@@ -1,16 +1,6 @@
-from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Band
 
-
-def hello(request) :
-    return HttpResponse('<h1>Hello Django!</h1>')
-
-def about(request) :
-    return HttpResponse('<h1>À propos</h1> <p>Nous adorons merch !</p>'
-                        )
-
-def listings(request) :
-    return HttpResponse('<ul>  <li>L1</li> <li>L2</li></ul>  ')
-
-def contact(request) :
-    return HttpResponse('<h1>Contact us</h1> <p>Contacter nous !</p>')
+def hello(request):
+    bands = Band.objects.all()
+    return render(request, 'listings/hello.html', context={'bands': bands})
